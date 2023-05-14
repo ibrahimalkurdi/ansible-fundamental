@@ -1,0 +1,66 @@
+- name: Test connectivity to tagets servers
+  hosts: all
+  tasks:
+    - name: Ping test
+      ping:
+
+
+- name: Run play on tg1
+  hosts: tg1
+  tasks:
+    - name: Ensure line exists in a file, if not append it
+      lineinfile: 
+        path: /tmp/ansible.out
+        line: 'Hello, I have been added by Ansible'
+        create: true
+
+- name: Install Nginx
+  hosts: tg2
+  become: yes # Run command as root
+  tasks:
+    - apt:
+        name: nginx
+        state: present
+        ### Remove package
+        #state: absent
+        #autoclean: yes
+
+- name: Use variable
+  hosts: tg1
+  vars:
+    foo: bar
+  tasks:
+    - name: use variable
+      command: echo {{ foo }} 
+      register: hello
+
+    - debug: msg={{ hello.stdout }}
+
+                                                                                                                                             
+- name: Use loop
+  hosts: tg1
+  vars:
+    foo:
+      - hello1
+      - hello2
+      - hello3
+  tasks:
+    - name: print list by using loop
+      debug: 
+        msg: "{{ item }}"
+      with_items: "{{ foo }}"
+
+
+- name: Use Condition in a loop
+  hosts: tg1
+  vars:
+    foo:
+      - "hello1"
+      - hello2
+      - hello3
+  tasks:
+    - name: Use if condition
+      debug:
+        msg: "{{ item }}"
+      with_items: "{{ foo }}"
+      when: item == "hello1"
