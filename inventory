@@ -1,0 +1,2 @@
+tg1 ansible_host=192.168.2.115 ansible_connection=ssh ansible_user=ansible ansible_ssh_pass=200320020
+tg2 ansible_host=192.168.2.116 ansible_connection=ssh ansible_user=ansible ansible_ssh_pass=200320020
