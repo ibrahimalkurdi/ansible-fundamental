@@ -1,0 +1,8 @@
+- name: copy file to multiple nodes
+  hosts: node01, node02
+  become: true
+  tasks:
+    - copy:
+        src: /usr/src/blog/index.html
+        dest: /opt/blog
+        remote_src: true

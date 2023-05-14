@@ -1,0 +1,11 @@
+- name: start service
+  hosts: node01, node02
+  become: true
+  tasks:
+    - name: Install httpd package
+      yum: name=vsftpd state=installed
+
+    - name: start vsftpd service
+      service:
+        name: vsftpd
+        state: started

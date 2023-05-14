@@ -1,0 +1,9 @@
+- name: install vim-enhanced package
+  hosts: localhost
+  become: true
+  connection: local
+  tasks:
+    - name: Install vim-enhanced package
+      yum:
+        name: vim-enhanced
+        state: present

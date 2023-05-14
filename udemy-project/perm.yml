@@ -1,0 +1,19 @@
+- name: create files on node01
+  hosts: node01
+  become: true
+  tasks:
+    - name: create file
+      file:
+        path: /opt/news/blog.txt
+        group: sam
+        state: touch
+
+- name: create files on node02
+  hosts: node02
+  become: true
+  tasks:
+    - name: create file on node02
+      file:
+        path: /opt/news/story.txt
+        owner: sam
+        state: touch

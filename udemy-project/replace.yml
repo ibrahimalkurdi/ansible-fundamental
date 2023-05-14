@@ -1,0 +1,19 @@
+- name: replace string on node01
+  hosts: node01
+  become: true
+  tasks:
+    - name: replace string on node01
+      replace:
+        path: /opt/music/blog.txt
+        regexp: 'Kodekloud'
+        replace: 'Ansible'
+
+- name: replace string on node02
+  hosts: node02
+  become: true
+  tasks:
+    - name: replace string on node02
+      replace:
+        path: /opt/music/story.txt
+        regexp: 'Ansible'
+        replace: 'Kodekloud'
